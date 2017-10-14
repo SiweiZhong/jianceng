@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>siwei</groupId>
+    <artifactId>jianceng</artifactId>
+    <packaging>jar</packaging>
+    <version>1.0.0-SNAPSHOT</version>
+
+    <properties>
+        <siwei.java.encoding>UTF-8</siwei.java.encoding>
+        <siwei.java.version>1.8</siwei.java.version>
+        <siwei.project.build.sourceEncoding>UTF-8</siwei.project.build.sourceEncoding>
+        <siwei.spring.version>4.2.6.RELEASE</siwei.spring.version>
+        <siwei.activiti.version>5.22.0</siwei.activiti.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <dependencies>
+
+
+    </dependencies>
+
+
+    <profiles>
+        <profile>
+            <id>local</id>
+            <properties>
+                <buildconfig>resource.local.properties</buildconfig>
+            </properties>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+        </profile>
+        <profile>
+            <id>pre</id>
+            <properties>
+                <buildconfig>resource.pre.properties</buildconfig>
+            </properties>
+        </profile>
+        <profile>
+            <id>real</id>
+            <properties>
+                <buildconfig>resource.real.properties</buildconfig>
+            </properties>
+        </profile>
+        <profile>
+            <id>dev</id>
+            <properties>
+                <buildconfig>resource.dev.properties</buildconfig>
+            </properties>
+        </profile>
+        <profile>
+            <id>test</id>
+            <properties>
+                <buildconfig>resource.test.properties</buildconfig>
+            </properties>
+        </profile>
+    </profiles>
+
+    <build>
+        <finalName>jianceng</finalName>
+        <filters>
+            <filter>../${buildconfig}</filter>
+        </filters>
+        <resources>
+            <resource>
+                <directory>src/main/resources</directory>
+                <filtering>true</filtering>
+                <includes>
+                    <include>**/*.xml</include>
+                    <include>**/*.properties</include>
+                </includes>
+            </resource>
+        </resources>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <skip>true</skip>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+
+        </plugins>
+    </build>
+
+
+</project>
